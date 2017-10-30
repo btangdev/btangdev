@@ -1,0 +1,4 @@
+https://www.youtube.com/watch?v=mwNATxfUsgI&vl=ko
+https://www.codementor.io/yurio/all-you-need-is-react-firebase-4v7g9p4kf
+https://medium.com/@taweesoft/chapter-1-create-react-app-and-setup-firebase-real-time-todo-list-with-firebase-react-js-f03a904097c7
+https://codepen.io/DeividasK/pen/pRmbWq
