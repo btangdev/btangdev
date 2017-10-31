@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-// import { AppContainer } from 'react-hot-loader';
+import { AppContainer } from 'react-hot-loader';
 
 import * as firebase from 'firebase';
 
+var auth;
 var config = {
     apiKey: "AIzaSyAKHlAjymNEnScE3tq5bkrkDjn1wQxACSk",
     authDomain: "gy-1003.firebaseapp.com",
@@ -16,18 +17,26 @@ var config = {
     messagingSenderId: "1040764564678"
 };
 firebase.initializeApp(config);
+auth = firebase.auth();
 
-firebase.auth().onAuthStateChanged(function(user) {
+var authProvider = new firebase.auth.GoogleAuthProvider();
+
+auth.onAuthStateChanged(function(user) {
     user = firebase.auth().currentUser;
     if (user) {
       // User is signed in.
+      console.log(user.displayName);
+      console.log('uid: ' + user.uid);
     } else {
       // No user is signed in.
+      auth.signInWithPopup(authProvider);
     }
   });
 
 ReactDOM.render(
-    <App /> 
+  <AppContainer>
+    <App />
+  </AppContainer>
     , document.getElementById('root')
 );
 

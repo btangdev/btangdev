@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Count from './Count/Count';
 import AppbarHeader from './AppbarHeader/AppbarHeader';
+import ThumbnailList from './ThumbList/ThumbnailList';
+import UploadButton from './UploadUI/UploadButton';
+import AppbarBtm from './AppbarBottom/AppbarBtm'
 import * as firebase from 'firebase';
 
 class App extends Component {    
@@ -9,20 +12,13 @@ class App extends Component {
     super(props);
     this.state = {
       speed: 10,
-      photo: 'asdasd'
+      photo: ''
     }
   }
 
   componentDidMount() {
     const rootRef = firebase.database().ref();
-    const rootStRef = firebase.storage().ref();
     const speedRef = rootRef.child('speed');
-
-    rootStRef.child('photo/May-Fruits-Flowers.jpg').getDownloadURL().then( (url) => {
-      this.setState({
-        photo: url
-      });
-    })
 
     speedRef.on('value', snap => {
       this.setState({
@@ -37,17 +33,28 @@ class App extends Component {
         <MuiThemeProvider>
           <AppbarHeader title={this.props.title}/>
         </MuiThemeProvider>
+
+        <MuiThemeProvider>
+          <ThumbnailList></ThumbnailList>
+        </MuiThemeProvider>
+
+        <MuiThemeProvider>
+          <UploadButton></UploadButton>
+        </MuiThemeProvider>
+        
         <Count version={this.props.version}></Count>
 
-        <h1>{this.state.speed} !!!</h1>
-        <img src={this.state.photo} alt=""/> 
+        <h1>{this.state.speed}!!</h1>
+        <MuiThemeProvider>
+          <AppbarBtm></AppbarBtm>
+        </MuiThemeProvider>
       </div>
     );
   }
 }
 
 App.defaultProps = {
-  title: 'react example demo!',
+  title: 'React & Firebase Post',
   version: '1.0.0'
 }
 

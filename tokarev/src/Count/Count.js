@@ -21,7 +21,7 @@ class Count extends React.Component {
     render() {
         return(
             <div>
-                <h1>state & xml parse</h1>
+                <h1>state hot loader</h1>
                 <h3>Counter: { this.state.value }</h3>
                 <button onClick={this.countClickHandler}>+</button>
                 <p>ver {this.props.version}</p>
@@ -29,12 +29,5 @@ class Count extends React.Component {
         );
     }
 }
-
-
-
-
-// Thumbnail.propTypes = {
-//     thumbListTitle: PropTypes.string.isRequired
-// }
 
 export default Count;
